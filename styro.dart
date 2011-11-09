@@ -1,5 +1,6 @@
 #import('dart:dom');
 #source('core.dart');
+#source('gui.dart');
 
 class styro {
 
