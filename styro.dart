@@ -1,10 +1,15 @@
 #import('dart:dom');
 #source('core.dart');
 #source('gui.dart');
+#source('gamestate.dart');
 
-class styro {
+class StyroGame {
 
-  styro() {
+  StyroGame() {
+  }
+  
+  void initialize() {
+    
   }
 
   void run() {
@@ -21,5 +26,5 @@ class styro {
 }
 
 void main() {
-  new styro().run();
+  new StyroGame().run();
 }

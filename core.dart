@@ -11,7 +11,7 @@ class Alert {
  */
 class TechTree {
   List<Agent> _start;
-  List<Agent> _available;
+  Set<Buildable> _available;
 
   bool canBuild(Buildable buildable) => _available.contains(buildable);
 
@@ -21,12 +21,17 @@ class TechTree {
 }
 
 /**
- * Place to store information about the world we're playing in (formerly "Map).
+ * Place to store information about the world we're playing in (formerly "Map").
  */
 class World {
   var _size;
 
   // TODO write me
+}
+
+class Point {
+  var x, y;
+  Point(this.x, this.y);
 }
 
 
@@ -56,6 +61,10 @@ class Agent {
   var _armor;
   var _alignment;
 
+  Agent(pos) {
+    _pos = new Point(pos.x, pos.y);
+  }
+  
   bool hurt(int amt) {
   }
 }
@@ -70,6 +79,7 @@ class Research {
  * An entity that provides resources.
  */
 class Resource extends Agent {
+  Resource(pos) : super(pos);
 }
 
 /**
@@ -81,6 +91,7 @@ class Building extends Agent implements Buildable {
   List<Unit> _queue;
   List<Unit> _units;
 
+  Building(pos) : super(pos);
   abstract void upgrade(Research);
 
   abstract void build(Unit);
@@ -90,7 +101,9 @@ class Building extends Agent implements Buildable {
  * An agent roaming around the map.
  */
 class Unit extends Agent implements Buildable {
-  List<Building> _buildables;
+  Set<Buildable> _buildables;
+  
+  Unit(pos) : super(pos); 
   
   moveTo(var pos) {
     // TODO write me
